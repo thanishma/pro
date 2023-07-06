@@ -1,2 +1,2 @@
 Flask==1.1.4
-sqlite3==<your-sqlite3-version>
+
