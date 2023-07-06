@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Restaurant Menu</title>
+</head>
+<body>
+    <h1>Restaurant Menu</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody id="menuItems">
+        </tbody>
+    </table>
+
+    <h2>Add Menu Item</h2>
+    <form id="addItemForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" step="0.01" required>
+
+        <button type="submit">Add Item</button>
+    </form>
+
+    <script>
+        // Fetch menu items from API
+        fetch('/menu')
+            .then(response => response.json())
+            .then(menuItems => {
+                const menuItemsContainer = document.getElementById('menuItems');
+                menuItems.forEach(menuItem => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${menuItem.id}</td>
+                        <td>${menuItem.name}</td>
+                        <td>${menuItem.price}</td>
+                    `;
+                    menuItemsContainer.appendChild(row);
+                });
+            });
+
+        // Handle form submission
+        const addItemForm = document.getElementById('addItemForm');
+        addItemForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const price = document.getElementById('price').value;
+
+            const data = { name, price };
+
+            fetch('/menu', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log(result);
+                    location.reload(); // Refresh the page to update the menu
+                });
+        });
+    </script>
+</body>
+</html>
