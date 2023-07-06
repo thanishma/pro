@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: restaurant-app
-        image: <your-container-registry>/<your-image-repository>:<image-tag>
+        image: image: docker.io/myrestaurantapp:v1.0
+
         ports:
         - containerPort: 5000
