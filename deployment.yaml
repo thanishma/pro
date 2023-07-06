@@ -14,7 +14,9 @@ spec:
     spec:
       containers:
         - name: restaurant-app
-          image: <your-container-registry>/<your-image-repository>:<image-tag>
+          image: restaurant-app:latest
+
+
           ports:
             - containerPort: 5000
 
