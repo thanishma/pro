@@ -13,8 +13,7 @@ spec:
         app: restaurant-app
     spec:
       containers:
-      - name: restaurant-app
-        image: image: docker.io/myrestaurantapp:v1.0
-
-        ports:
-        - containerPort: 5000
+        - name: restaurant-app
+          image: <your-container-registry>/<your-image-repository>:<image-tag>
+          ports:
+            - containerPort: 5000
