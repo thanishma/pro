@@ -19,5 +19,9 @@ EXPOSE 5000
 ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
+# Create the SQLite database file
+RUN python -c "from app import create_tables; create_tables()"
+
 # Run the application
 CMD [ "flask", "run" ]
+
