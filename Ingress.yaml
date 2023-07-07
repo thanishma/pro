@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: restarunnt-management-ingress
+spec:
+  rules:
+  - host: restaurantlovers.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: restarunnt-management
+            port:
+              number: 80
