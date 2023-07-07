@@ -1,22 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: restaurant-app
+  name: restarunnt-management
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: restaurant-app
+      app: restarunnt-management
   template:
     metadata:
       labels:
-        app: restaurant-app
+        app: restarunnt-management
     spec:
       containers:
-        - name: restaurant-app
-          image: restaurant-app:latest
-
-
-          ports:
-            - containerPort: 5000
+      - name: restarunnt-management
+        image: "h4ck3rd33p/restarunnt-management-flask-app"
+        ports:
+        - containerPort: 10000
+        env:
+        - name: NAME
+          value: "World"
+        - name: DATABASE_URL
+          value: "sqlite:////app/instance/restaurant.db"
 
