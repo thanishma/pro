@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: restaurant-service
+  name: restarunnt-management
 spec:
+  type: LoadBalancer
   selector:
-    app: restaurant-app
+    app: restarunnt-management
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: NodePort
+  - port: 80
+    targetPort: 10000
+    nodePort: 32436
 
